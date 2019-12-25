@@ -1,0 +1,17 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+e-commerceApp,com.example.demo.controllers,OrderController,0,77,0,4,0,16,0,6,0,4
+e-commerceApp,com.example.demo.controllers,UserController,9,84,2,4,1,19,3,5,1,4
+e-commerceApp,com.example.demo.controllers,ItemController,68,7,8,0,8,2,7,2,3,2
+e-commerceApp,com.example.demo.controllers,CartController,17,219,1,7,2,31,1,9,0,6
+e-commerceApp,com.example.demo.security,WebSecurityConfiguration,0,61,0,0,0,15,0,4,0,4
+e-commerceApp,com.example.demo.security,JWTAuthenticationVerificationFilter,60,4,8,0,18,2,6,1,2,1
+e-commerceApp,com.example.demo.security,SecurityConstants,3,0,0,0,1,0,1,0,1,0
+e-commerceApp,com.example.demo.security,UserDetailsImpl,21,3,2,0,4,1,2,1,1,1
+e-commerceApp,com.example.demo.security,JWTAuthenticationFilter,59,6,0,0,13,3,2,1,2,1
+e-commerceApp,com.example.demo.model.requests,CreateUserRequest,0,24,0,0,0,10,0,7,0,7
+e-commerceApp,com.example.demo.model.requests,ModifyCartRequest,0,24,0,0,0,10,0,7,0,7
+e-commerceApp,com.example.demo,SareetaApplication,8,11,0,0,3,3,1,3,1,3
+e-commerceApp,com.example.demo.model.persistence,User,0,31,0,0,0,13,0,9,0,9
+e-commerceApp,com.example.demo.model.persistence,Item,57,30,13,1,17,13,10,8,3,8
+e-commerceApp,com.example.demo.model.persistence,UserOrder,7,46,0,0,3,15,2,8,2,8
+e-commerceApp,com.example.demo.model.persistence,Cart,14,77,2,6,3,24,3,12,1,10

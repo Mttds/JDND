@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WebSecurityConfiguration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">e-commerceApp</a> &gt; <a href="index.source.html" class="el_package">com.example.demo.security</a> &gt; <span class="el_source">WebSecurityConfiguration.java</span></div><h1>WebSecurityConfiguration.java</h1><pre class="source lang-java linenums">package com.example.demo.security;
+
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.context.annotation.Bean;
+
+import static com.example.demo.security.SecurityConstants.SIGN_UP_URL;
+
+@EnableWebSecurity
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+    private UserDetailsImpl userDetailsService;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+<span class="fc" id="L20">    public WebSecurityConfiguration(UserDetailsImpl userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {</span>
+<span class="fc" id="L21">        this.userDetailsService = userDetailsService;</span>
+<span class="fc" id="L22">        this.bCryptPasswordEncoder = bCryptPasswordEncoder;</span>
+<span class="fc" id="L23">    }</span>
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+<span class="fc" id="L27">        http.cors().and().csrf().disable().authorizeRequests()</span>
+<span class="fc" id="L28">                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()</span>
+<span class="fc" id="L29">                .anyRequest().authenticated()</span>
+<span class="fc" id="L30">                .and()</span>
+<span class="fc" id="L31">                .addFilter(new JWTAuthenticationFilter(authenticationManager()))</span>
+<span class="fc" id="L32">                .addFilter(new JWTAuthenticationVerificationFilter(authenticationManager()))</span>
+<span class="fc" id="L33">                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);</span>
+<span class="fc" id="L34">    }</span>
+
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+<span class="fc" id="L39">    	return super.authenticationManager();</span>
+    }
+
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+<span class="fc" id="L44">    	auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);</span>
+<span class="fc" id="L45">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
